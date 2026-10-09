@@ -1,6 +1,6 @@
 // Viajá Seguro TDF – funciona sin conexión.
 // Al actualizar las páginas, cambiá el número de versión para refrescar todo.
-const VERSION = 'viaja-seguro-v2';
+const VERSION = 'viaja-seguro-v4';
 const CORE = ['./', 'index.html', 'verano.html', 'invierno.html', 'manifest.webmanifest',
   'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'];
 

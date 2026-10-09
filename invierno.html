@@ -94,6 +94,8 @@ a{color:inherit}
 .dest .bt a.walk{background:#fff;color:#263238;border:2px solid #263238}
 .dest .bt svg{width:20px;height:20px}
 .geo-warn{margin-top:10px;background:#FFF3E0;color:#7A3A00;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600}
+.safe{margin:6px 0 10px;background:#FDECEA;color:#7F1D1D;border-left:6px solid #C62828;border-radius:10px;padding:10px 12px;font-size:14.5px;font-weight:600;line-height:1.4}
+.safe b{color:#B71C1C}
 .omap{margin:4px 0 12px;background:#fff;border:2px solid #263238;border-radius:12px;overflow:hidden}
 .omap svg{display:block;width:100%;height:auto;background:#CFE6F2}
 .omap-info{padding:10px 12px;background:#263238;color:#fff}
@@ -103,6 +105,20 @@ a{color:inherit}
 .dest .bt{grid-template-columns:1fr 1fr 1fr!important}
 .dest .bt button.mapb{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-radius:10px;border:2px solid var(--green);background:#E8F5E9;color:var(--green-d);font:800 16px/1 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;cursor:pointer}
 .dest.sel{background:#F1F8F2;border-radius:10px;padding-left:8px;padding-right:8px}
+.navsel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+.navsel label{display:flex;flex-direction:column;gap:2px;border:2px solid #CFD8DC;border-radius:12px;padding:10px;cursor:pointer;background:#fff}
+.navsel input{position:absolute;opacity:0;pointer-events:none}
+.navsel b{font:800 18px/1.05 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;color:#263238}
+.navsel span{font-size:13px;font-weight:600;color:var(--muted)}
+.navsel label.on{border-color:var(--green);background:#E8F5E9}
+.navsel label.on b{color:var(--green-d)}
+.navtip{display:none;margin:8px 0 0;background:#FFF3E0;color:#7A3A00;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600}
+.navtip.show{display:block}
+.navtip a{color:#7A3A00}
+.prep{margin-top:12px;background:#E8F5E9;border:2px solid #A5D6A7;border-radius:12px;padding:12px 14px;font-size:14.5px;font-weight:600;color:#263238}
+.prep b{color:var(--green-d)}
+.prep ol{margin:6px 0 0;padding-left:20px}.prep li{margin:3px 0}
+.prep a.store{display:inline-block;margin-top:8px;background:var(--green);color:#fff;text-decoration:none;font:800 16px/1 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;padding:10px 14px;border-radius:10px}
 .geo-err{display:none;margin-top:12px;background:#FDECEA;color:#8E1B2B;border-radius:10px;padding:10px 12px;font-weight:600;font-size:15px;text-align:left}
 .geo-err.show{display:block}
 
@@ -221,15 +237,19 @@ a{color:inherit}
         </div>
         <div class="geo-back" id="geoBack">
           <h3>Volver a una localidad</h3>
-          <p class="sub">El mapa funciona sin señal. Las localidades están ordenadas de la más cercana a la más lejana; con datos, abrí la ruta en Google Maps.</p>
+          <p class="sub">Ordenadas de la más cercana a la más lejana. Elegí con qué app abrir la ruta:</p>
+          <div class="safe"><b>Si estás perdido:</b> si no conocés el terreno, lo más seguro es <b>quedarte en el lugar</b>, abrigarte y pasar tus coordenadas por teléfono o radio. La dirección hacia una ruta o localidad es solo una referencia: en línea recta puede haber ríos, turbales, bosque cerrado o barrancos.</div>
           <div class="omap" id="omap">
             <svg id="omapSvg" viewBox="0 0 235.1 260.0" role="img" aria-label="Mapa sin conexión de Tierra del Fuego">
               <path d="M26.9 230.4 L26.2 233.6 L25.5 233.6 L21.2 229.7 L10.1 222.8 L7.9 223.4 L7.9 224.1 L12.8 225.8 L15.4 230.1 L18.0 232.3 L20.9 233.6 L21.3 234.6 L18.3 237.0 L1.9 239.9 L0.0 239.5 L0.0 189.7 L1.8 190.3 L3.5 191.9 L5.3 192.1 L6.2 191.8 L6.1 190.1 L6.5 188.1 L3.5 185.7 L0.0 184.0 L0.0 13.1 L4.7 10.0 L7.9 10.1 L13.1 7.3 L16.9 4.1 L18.1 0.8 L18.7 0.0 L20.8 0.7 L25.0 6.5 L27.8 9.0 L26.9 223.3 L23.5 221.8 L22.8 222.1 L23.2 223.1 L26.9 224.9 L26.9 230.4Z M132.4 248.9 L134.8 256.3 L132.2 255.7 L127.7 251.3 L119.5 247.2 L119.3 245.9 L120.7 244.1 L122.0 244.2 L129.6 246.6 L131.1 247.4 L132.4 248.9Z M0.2 244.1 L2.9 245.4 L5.1 243.3 L15.6 243.2 L21.4 240.0 L24.4 239.2 L30.8 239.2 L34.5 237.9 L38.7 239.0 L40.8 240.4 L45.0 246.0 L45.4 249.6 L45.0 251.2 L44.2 252.3 L42.7 252.5 L40.4 250.3 L38.7 249.6 L38.6 250.3 L39.3 252.9 L34.6 256.2 L33.5 256.0 L30.9 252.7 L29.2 251.6 L28.0 252.9 L28.2 253.7 L30.4 255.0 L31.2 258.5 L28.8 260.0 L26.0 260.0 L16.1 256.5 L12.3 252.9 L7.9 250.4 L6.3 250.2 L4.2 247.5 L2.8 246.9 L2.2 249.5 L2.5 251.1 L4.7 250.8 L5.6 251.3 L6.7 253.6 L8.9 256.1 L15.8 260.0 L0.0 260.0 L0.2 244.1Z M55.0 259.6 L53.6 255.4 L54.0 252.7 L55.0 250.5 L53.7 242.8 L49.2 244.5 L45.3 244.1 L43.7 240.3 L43.5 238.1 L44.4 237.1 L51.4 237.1 L52.2 235.8 L68.1 235.5 L76.1 236.4 L80.9 238.5 L85.2 237.1 L105.7 237.9 L110.3 239.8 L112.7 241.8 L119.8 252.2 L120.3 254.4 L120.4 257.4 L119.7 260.0 L55.0 259.6Z" fill="#DADDDB" stroke="#9AA3A0" stroke-width=".5"></path>
               <path d="M26.9 230.4 L26.9 224.9 L31.0 231.3 L31.3 232.8 L30.1 233.5 L26.2 233.6 L26.9 230.4Z M26.9 223.3 L27.8 9.0 L30.2 11.3 L31.9 15.4 L35.7 21.3 L39.5 28.5 L44.6 33.6 L46.4 36.2 L49.0 43.1 L51.4 55.2 L51.1 56.9 L49.8 53.7 L48.2 46.5 L46.7 45.7 L44.1 46.6 L34.0 57.1 L32.0 61.7 L31.5 65.2 L32.3 68.9 L38.1 74.8 L47.3 77.0 L53.5 76.4 L58.1 79.4 L60.2 84.5 L59.8 88.0 L60.8 90.7 L61.9 97.3 L65.6 105.1 L76.8 117.7 L82.1 122.5 L82.4 124.0 L81.8 125.5 L84.6 125.0 L90.6 128.6 L91.2 129.7 L89.5 130.2 L88.9 131.9 L89.1 134.3 L89.8 135.8 L105.9 150.4 L115.2 157.3 L121.8 160.6 L125.7 163.2 L126.8 165.0 L128.9 166.3 L137.2 170.0 L141.0 173.8 L143.8 179.7 L149.6 185.4 L151.2 188.0 L153.3 189.1 L153.9 191.6 L160.1 193.5 L165.3 196.9 L185.5 207.0 L188.7 207.7 L191.4 209.7 L195.9 210.0 L200.0 211.2 L214.1 209.1 L218.7 209.5 L222.8 207.7 L231.8 209.1 L232.7 209.7 L232.2 211.1 L229.6 214.0 L227.8 219.4 L228.7 221.5 L226.2 224.1 L226.7 227.1 L223.0 230.2 L221.5 236.4 L219.9 237.7 L217.9 237.5 L217.4 234.4 L215.8 233.4 L213.8 233.4 L212.5 234.5 L212.9 236.4 L211.6 238.3 L206.9 237.8 L204.8 238.4 L203.7 241.2 L201.7 242.2 L200.7 241.9 L199.2 239.8 L199.4 237.9 L198.7 235.9 L195.7 235.6 L193.3 236.6 L189.4 235.0 L188.0 236.1 L184.2 235.2 L182.9 236.1 L185.1 239.0 L182.6 242.2 L175.3 244.6 L163.6 244.5 L160.4 245.5 L160.4 248.8 L155.7 250.2 L150.4 250.1 L143.4 247.1 L140.2 243.0 L135.0 239.3 L126.6 237.9 L121.6 235.5 L103.9 234.2 L91.6 232.5 L84.2 233.1 L68.7 231.2 L60.1 229.6 L57.4 227.4 L51.8 226.9 L46.9 224.2 L46.1 225.1 L46.2 228.3 L45.4 229.2 L34.1 230.2 L32.5 229.8 L26.9 223.3Z" fill="#EEF3EA" stroke="#7D8A84" stroke-width=".6"></path>
+              <path d="M26.2 233.6 L26.9 230.4 L26.9 224.9 M26.9 223.3 L27.8 9.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="3 2"></path>
+              <text transform="translate(24,112) rotate(-90)" font-size="5.5" font-weight="700" fill="#37474F" stroke="#DADDDB" stroke-width="2" paint-order="stroke" letter-spacing=".5">LÍMITE INTERNACIONAL</text>
+              <text x="150" y="150" font-size="8" font-weight="800" fill="#6B7F72" letter-spacing="1.5" text-anchor="middle">ARGENTINA</text>
               <path d="M20.3 77.2 L35.8 76.8 M20.3 77.2 L17.9 72.7 L16.9 69.4 L16.9 66.5 L19.1 60.3 L19.3 57.4 L19.3 55.8 L18.3 49.2 L17.4 44.2 L13.5 36.4 L11.3 25.7 L9.4 19.9 L8.6 18.6 L7.2 17.8 L3.8 17.0 L0.0 17.2 M0.0 79.8 L3.3 79.3 L9.6 77.2 L14.9 77.6 L20.3 77.2 M35.8 76.8 L39.2 77.2 L41.4 78.4 L45.7 83.8 L53.5 89.2 L57.9 95.4 L60.8 101.5 L67.1 111.9 L68.0 113.1 L70.7 115.2 M70.7 115.2 L73.1 116.8 L77.5 121.3 L78.9 123.0 L79.7 125.1 L80.9 126.3 M82.6 127.5 L84.5 128.4 L85.7 130.0 L86.9 135.4 L88.4 138.7 L92.0 142.4 L93.7 145.3 L96.2 146.1 L97.4 147.3 M97.4 147.3 L100.0 149.8 L101.2 152.3 L102.2 156.4 L103.7 160.5 L107.3 167.5 L107.8 169.6 M107.8 169.6 L108.0 170.4 L107.3 172.5 L103.7 176.2 L101.2 179.5 M101.2 179.5 L90.3 178.7 L83.8 179.1 L74.6 178.7 L72.6 178.3 L71.9 177.0 L72.4 175.0 L80.2 163.0 L81.6 159.7 L81.9 156.4 L81.4 151.5 L81.6 145.3 L80.4 141.1 L80.2 137.8 L80.4 135.0 L82.6 127.5 M153.4 192.3 L148.0 189.8 L143.4 184.0 L138.6 176.6 L134.5 172.9 L130.1 170.4 L123.1 170.0 L117.5 175.0 L115.8 175.0 L114.8 174.5 L112.4 171.7 L110.5 170.4 L107.8 169.6 M101.2 179.5 L101.7 181.6 L107.8 189.4 L108.8 192.7 L108.8 195.2 L108.3 198.5 L107.3 200.9 L105.6 203.0 L103.7 204.2 L99.8 206.3 L96.6 207.1 L89.6 207.5 L81.9 205.9 L79.9 206.3 L77.5 208.8 L72.9 217.9 L71.7 219.5 L70.5 220.3 M70.5 220.3 L65.9 220.3 L58.1 218.3 L55.7 218.7 L53.7 219.5 L51.3 223.6 L49.1 225.3 L46.2 225.7 M70.5 220.3 L72.9 221.2 L77.0 224.0 L79.7 224.0 L81.4 224.9 L82.8 226.5 L89.9 231.9 L95.4 232.3 L97.4 233.5 M46.2 225.7 L44.8 227.3 L42.8 228.6 L33.4 230.6 L28.5 233.9 M117.7 256.2 L117.2 254.6 L115.1 250.4 L113.1 247.6 L107.8 243.8 L102.5 241.4 L88.2 241.4 L86.5 240.5 L80.6 242.2 L72.2 239.7 L66.6 241.4 L60.8 239.3 L55.2 241.4 L48.2 241.0 L46.2 240.1" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
               <path d="M20.3 77.2 L35.8 76.8 M20.3 77.2 L17.9 72.7 L16.9 69.4 L16.9 66.5 L19.1 60.3 L19.3 57.4 L19.3 55.8 L18.3 49.2 L17.4 44.2 L13.5 36.4 L11.3 25.7 L9.4 19.9 L8.6 18.6 L7.2 17.8 L3.8 17.0 L0.0 17.2 M0.0 79.8 L3.3 79.3 L9.6 77.2 L14.9 77.6 L20.3 77.2 M35.8 76.8 L39.2 77.2 L41.4 78.4 L45.7 83.8 L53.5 89.2 L57.9 95.4 L60.8 101.5 L67.1 111.9 L68.0 113.1 L70.7 115.2 M70.7 115.2 L73.1 116.8 L77.5 121.3 L78.9 123.0 L79.7 125.1 L80.9 126.3 M82.6 127.5 L84.5 128.4 L85.7 130.0 L86.9 135.4 L88.4 138.7 L92.0 142.4 L93.7 145.3 L96.2 146.1 L97.4 147.3 M97.4 147.3 L100.0 149.8 L101.2 152.3 L102.2 156.4 L103.7 160.5 L107.3 167.5 L107.8 169.6 M107.8 169.6 L108.0 170.4 L107.3 172.5 L103.7 176.2 L101.2 179.5 M101.2 179.5 L90.3 178.7 L83.8 179.1 L74.6 178.7 L72.6 178.3 L71.9 177.0 L72.4 175.0 L80.2 163.0 L81.6 159.7 L81.9 156.4 L81.4 151.5 L81.6 145.3 L80.4 141.1 L80.2 137.8 L80.4 135.0 L82.6 127.5 M153.4 192.3 L148.0 189.8 L143.4 184.0 L138.6 176.6 L134.5 172.9 L130.1 170.4 L123.1 170.0 L117.5 175.0 L115.8 175.0 L114.8 174.5 L112.4 171.7 L110.5 170.4 L107.8 169.6 M101.2 179.5 L101.7 181.6 L107.8 189.4 L108.8 192.7 L108.8 195.2 L108.3 198.5 L107.3 200.9 L105.6 203.0 L103.7 204.2 L99.8 206.3 L96.6 207.1 L89.6 207.5 L81.9 205.9 L79.9 206.3 L77.5 208.8 L72.9 217.9 L71.7 219.5 L70.5 220.3 M70.5 220.3 L65.9 220.3 L58.1 218.3 L55.7 218.7 L53.7 219.5 L51.3 223.6 L49.1 225.3 L46.2 225.7 M70.5 220.3 L72.9 221.2 L77.0 224.0 L79.7 224.0 L81.4 224.9 L82.8 226.5 L89.9 231.9 L95.4 232.3 L97.4 233.5 M46.2 225.7 L44.8 227.3 L42.8 228.6 L33.4 230.6 L28.5 233.9 M117.7 256.2 L117.2 254.6 L115.1 250.4 L113.1 247.6 L107.8 243.8 L102.5 241.4 L88.2 241.4 L86.5 240.5 L80.6 242.2 L72.2 239.7 L66.6 241.4 L60.8 239.3 L55.2 241.4 L48.2 241.0 L46.2 240.1" fill="none" stroke="#C0392B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
               <text x="200" y="40" font-size="8" fill="#5C7F92" font-style="italic" text-anchor="middle">Océano Atlántico</text>
-              <text x="18" y="120" font-size="7" fill="#7A817E" text-anchor="middle">CHILE</text>
+              <text x="13" y="200" font-size="7" font-weight="800" fill="#7A817E" letter-spacing="1" text-anchor="middle">CHILE</text>
               <text x="122" y="256" font-size="6.5" fill="#5C7F92" font-style="italic" text-anchor="middle">Canal Beagle</text>
               <g id="omapLine"></g>
               <g id="omapPlaces"></g>
@@ -237,10 +257,18 @@ a{color:inherit}
               <g transform="translate(220,16)"><path d="M0 -10 L4 4 L0 1 L-4 4Z" fill="#263238"></path><text y="13" font-size="7" font-weight="700" text-anchor="middle" fill="#263238">N</text></g>
             </svg>
             <div class="omap-info" id="omapInfo"></div>
-            <p class="omap-note">Mapa esquemático disponible sin señal: rutas principales aproximadas. Usalo para orientarte; el recorrido exacto lo da Google Maps cuando hay datos.</p>
+            <p class="omap-note">Mapa esquemático disponible sin señal: rutas principales aproximadas. Usalo para orientarte; el recorrido exacto lo dan Organic Maps (sin señal, con el mapa descargado) o Google Maps (con datos).</p>
           </div>
+          <div class="navsel" id="navSel">
+            <label class="on" data-v="om"><input type="radio" name="nav" value="om" checked><b>Organic Maps</b><span>Funciona sin señal</span></label>
+            <label data-v="gm"><input type="radio" name="nav" value="gm"><b>Google Maps</b><span>Necesita datos</span></label>
+          </div>
+          <div class="navtip" id="navTip">Si no se abrió Organic Maps, es porque no está instalada en este celular. Instalala cuando tengas señal desde <a href="https://organicmaps.app/" target="_blank" rel="noopener">organicmaps.app</a> y descargá el mapa de Tierra del Fuego.</div>
           <div id="geoList"></div>
-          <div class="geo-warn">Google Maps necesita datos móviles para calcular la ruta, salvo que tengas el mapa descargado sin conexión. En zonas aisladas, la opción a pie es solo para distancias cortas: ante una emergencia, llamá o comunicate por radio y esperá asistencia.</div>
+          <div class="prep"><b>Antes de salir, con señal:</b>
+            <ol><li>Instalá <b>Organic Maps</b> (gratis, Android y iPhone).</li><li>Abrila, acercate a Tierra del Fuego y tocá <b>Descargar</b> cuando te ofrezca el mapa de la zona.</li><li>Listo: rutas, senderos y navegación funcionan sin internet.</li></ol>
+            <a class="store" href="https://organicmaps.app/" target="_blank" rel="noopener">Descargar Organic Maps</a></div>
+          <div class="geo-warn">Google Maps necesita datos móviles salvo que tengas la zona descargada. Organic Maps navega sin señal si descargaste el mapa antes. En zonas aisladas, la opción a pie es solo para distancias cortas: ante una emergencia, llamá o comunicate por radio y esperá asistencia.</div>
         </div>
       </div>
       <div class="geo-err" id="geoErr"></div>
@@ -374,9 +402,13 @@ a{color:inherit}
     if(!ME) return;
     var g=document.getElementById('omapPlaces'),ln=document.getElementById('omapLine'),me=document.getElementById('omapMe');
     g.innerHTML='';ln.innerHTML='';me.innerHTML='';
-    PLACES.forEach(function(p){var q=mp(p[2],p[3]),s=SEL&&SEL.n===p[0];
-      g.appendChild(el('circle',{cx:q[0],cy:q[1],r:s?3.4:2.4,fill:s?'#1B5E20':'#263238',stroke:'#fff','stroke-width':'.8'}));
-      var t=el('text',{x:q[0]+4,y:q[1]+2.4,'font-size':s?'7.5':'6.5','font-weight':'700',fill:s?'#1B5E20':'#263238',stroke:'#fff','stroke-width':'2','paint-order':'stroke'},p[0]);g.appendChild(t);});
+    PLACES.concat([['Puerto Williams (Chile)','Ciudad chilena',-54.9333,-67.6167]]).forEach(function(p){var q=mp(p[2],p[3]),s=SEL&&SEL.n===p[0],city=/Ciudad|Localidad/.test(p[1]),cl=/chilena/.test(p[1]);
+      var col=s?'#1B5E20':(cl?'#6D6D6D':'#263238');
+      if(city){var r=s?4:3.2;g.appendChild(el('rect',{x:q[0]-r,y:q[1]-r,width:2*r,height:2*r,fill:col,stroke:'#fff','stroke-width':'.9'}));}
+      else g.appendChild(el('circle',{cx:q[0],cy:q[1],r:s?3.2:2.2,fill:col,stroke:'#fff','stroke-width':'.8'}));
+      var t=el('text',{x:q[0]+5,y:q[1]+(cl?8:2.4),'font-size':city?(s?'8.5':'7.8'):(s?'7':'6.2'),'font-weight':city?'800':'700',fill:col,stroke:'#fff','stroke-width':'2','paint-order':'stroke'},city&&!cl?p[0].toUpperCase():p[0]);g.appendChild(t);});
+    if(SEL&&SEL.road){var rq=mp(SEL.la,SEL.lo);g.appendChild(el('path',{d:'M'+rq[0]+' '+(rq[1]-4.5)+' l4.5 4.5 l-4.5 4.5 l-4.5 -4.5z',fill:'#E65100',stroke:'#fff','stroke-width':'.9'}));
+      g.appendChild(el('text',{x:rq[0]+6,y:rq[1]+2.4,'font-size':'7','font-weight':'800',fill:'#E65100',stroke:'#fff','stroke-width':'2','paint-order':'stroke'},'Ruta'));}
     var m=mp(ME.la,ME.lo),out=m[0]<0||m[1]<0||m[0]>MW||m[1]>MH;
     m=[Math.max(4,Math.min(MW-4,m[0])),Math.max(4,Math.min(MH-4,m[1]))];
     if(SEL){var q=mp(SEL.la,SEL.lo);ln.appendChild(el('line',{x1:m[0],y1:m[1],x2:q[0],y2:q[1],stroke:'#1B5E20','stroke-width':'1.6','stroke-dasharray':'4 3','stroke-linecap':'round'}));}
@@ -389,20 +421,40 @@ a{color:inherit}
   }
   function selectPlace(p){SEL=p;drawMap();
     [].forEach.call(document.querySelectorAll('.dest'),function(d){d.classList.toggle('sel',d.getAttribute('data-n')===p.n);});}
+  var NAV='om';try{NAV=localStorage.getItem('navApp')||'om';}catch(e){}
+  function setNav(v){NAV=v;try{localStorage.setItem('navApp',v);}catch(e){}
+    [].forEach.call(document.querySelectorAll('#navSel label'),function(l){var on=l.getAttribute('data-v')===v;l.classList.toggle('on',on);l.querySelector('input').checked=on;});
+    document.getElementById('navTip').className='navtip';}
+  [].forEach.call(document.querySelectorAll('#navSel label'),function(l){l.addEventListener('click',function(e){e.preventDefault();setNav(l.getAttribute('data-v'));});});
+  setNav(NAV);
+  function openNav(e){e.preventDefault();var a=e.currentTarget;
+    if(NAV==='gm'){window.open(a.getAttribute('data-gm'),'_blank','noopener');return;}
+    var left=false,h=function(){if(document.hidden)left=true;};document.addEventListener('visibilitychange',h);
+    window.location.href=a.getAttribute('data-om');
+    setTimeout(function(){document.removeEventListener('visibilitychange',h);if(!left&&!document.hidden){document.getElementById('navTip').className='navtip show';}},1800);}
+  var ROADS=[[[-53.318,-68.6372],[-53.318,-68.4911]],[[-53.318,-68.4911],[-53.3221,-68.4333],[-53.3345,-68.3962],[-53.3881,-68.322],[-53.4417,-68.19],[-53.5036,-68.1157],[-53.5655,-68.0662],[-53.6686,-67.959],[-53.6809,-67.9425],[-53.7016,-67.8971]],[[-53.7016,-67.8971],[-53.7181,-67.8559],[-53.7634,-67.7817],[-53.7799,-67.7569],[-53.8006,-67.7445],[-53.8129,-67.7239]],[[-53.8253,-67.695],[-53.8336,-67.662],[-53.8501,-67.6414],[-53.9037,-67.6208],[-53.9367,-67.5961],[-53.9738,-67.5342],[-54.0027,-67.5053],[-54.0109,-67.4641],[-54.0233,-67.4435]],[[-54.0233,-67.4435],[-54.048,-67.3981],[-54.0728,-67.3775],[-54.114,-67.361],[-54.1553,-67.3362],[-54.2254,-67.2744],[-54.246,-67.2661]],[[-54.246,-67.2661],[-54.2542,-67.262],[-54.2749,-67.2744],[-54.312,-67.3362],[-54.345,-67.3775]],[[-54.345,-67.3775],[-54.3367,-67.5631],[-54.3409,-67.6744],[-54.3367,-67.8312],[-54.3326,-67.8641],[-54.3202,-67.8765],[-54.2996,-67.8683],[-54.18,-67.7363],[-54.147,-67.7115],[-54.114,-67.7074],[-54.0645,-67.7157],[-54.0027,-67.7115],[-53.9614,-67.7322],[-53.9284,-67.7363],[-53.8995,-67.7322],[-53.8253,-67.695]],[[-54.4728,-66.4907],[-54.4481,-66.5815],[-54.3903,-66.6598],[-54.3161,-66.7423],[-54.279,-66.8124],[-54.2542,-66.8867],[-54.2501,-67.0063],[-54.2996,-67.1011],[-54.2996,-67.13],[-54.2955,-67.1465],[-54.2666,-67.1877],[-54.2542,-67.2207],[-54.246,-67.2661]],[[-54.345,-67.3775],[-54.3656,-67.3692],[-54.444,-67.2661],[-54.477,-67.2496],[-54.5017,-67.2496],[-54.5347,-67.2579],[-54.5595,-67.2744],[-54.5801,-67.3032],[-54.5924,-67.3362],[-54.6131,-67.4022],[-54.6213,-67.4558],[-54.6254,-67.5754],[-54.6089,-67.7074],[-54.6131,-67.7404],[-54.6378,-67.7817],[-54.7286,-67.86],[-54.745,-67.8806],[-54.7533,-67.9013]],[[-54.7533,-67.9013],[-54.7533,-67.9796],[-54.7327,-68.1116],[-54.7368,-68.1529],[-54.745,-68.1859],[-54.7863,-68.2271],[-54.8036,-68.2743]],[[-54.7533,-67.9013],[-54.7615,-67.86],[-54.7904,-67.7899],[-54.7904,-67.7445],[-54.7987,-67.7157],[-54.8152,-67.6909],[-54.8688,-67.5713],[-54.8729,-67.4765],[-54.8853,-67.4435]],[[-54.8069,-68.3137],[-54.8234,-68.3385],[-54.8358,-68.3715],[-54.8559,-68.5297]],[[-54.8683,-68.5654],[-54.8894,-68.6148]]];
+  function nearestRoad(la,lo){var c=Math.cos(la*Math.PI/180),best=null;
+    ROADS.forEach(function(L){for(var i=0;i<L.length-1;i++){var ax=L[i][1]*c,ay=L[i][0],bx=L[i+1][1]*c,by=L[i+1][0],px=lo*c,py=la;
+      var dx=bx-ax,dy=by-ay,t=((px-ax)*dx+(py-ay)*dy)/((dx*dx+dy*dy)||1e-12);t=Math.max(0,Math.min(1,t));
+      var qx=ax+t*dx,qy=ay+t*dy,d=(qx-px)*(qx-px)+(qy-py)*(qy-py);if(!best||d<best.d)best={d:d,la:qy,lo:qx/c};}});
+    return best;}
   function renderBack(la,lo){
     var list=document.getElementById('geoList');list.innerHTML='';
     var arr=PLACES.map(function(p){return {n:p[0],d:p[1],la:p[2],lo:p[3],km:hav(la,lo,p[2],p[3])};}).sort(function(a,b){return a.km-b.km;});
+    var nr=nearestRoad(la,lo);if(nr){arr.unshift({n:'Ruta más cercana',d:'Ruta principal · punto aproximado',la:+nr.la.toFixed(5),lo:+nr.lo.toFixed(5),km:hav(la,lo,nr.la,nr.lo),road:true});}
     arr.forEach(function(p,i){
       var o=la.toFixed(6)+','+lo.toFixed(6),dst=p.la+','+p.lo;
-      var u='https://www.google.com/maps/dir/?api=1&origin='+o+'&destination='+dst+'&travelmode=';
+      var gm='https://www.google.com/maps/dir/?api=1&origin='+o+'&destination='+dst+'&travelmode=';
+      var om='om://route?v=1&sll='+o+'&saddr='+encodeURIComponent('Mi ubicación')+'&dll='+dst+'&daddr='+encodeURIComponent(p.n)+'&type=';
       var km=p.km<1?'< 1 km':(p.km<10?p.km.toFixed(1).replace('.',','):Math.round(p.km))+(p.km<1?'':' km');
       var row=document.createElement('div');row.className='dest';row.setAttribute('data-n',p.n);
-      row.innerHTML='<div class="n">'+p.n+(i===0?'<span class="near">Más cercana</span>':'')+'<small>'+p.d+'</small></div><div class="km">≈ '+km+'</div>'+
-        '<div class="bt"><a class="car" target="_blank" rel="noopener" href="'+u+'driving">'+CAR+'Vehículo</a><a class="walk" target="_blank" rel="noopener" href="'+u+'walking">'+WALK+'A pie</a><button type="button" class="mapb">Mapa</button></div>';
+      row.innerHTML='<div class="n">'+p.n+(p.road?'<span class="near" style="background:#E65100">Referencia</span>':((i===1&&arr[0].road)||(i===0&&!arr[0].road)?'<span class="near">Más cercana</span>':''))+'<small>'+p.d+'</small></div><div class="km">≈ '+km+'</div>'+
+        '<div class="bt"><a class="car" href="#" data-gm="'+gm+'driving" data-om="'+om+'vehicle">'+CAR+'Vehículo</a><a class="walk" href="#" data-gm="'+gm+'walking" data-om="'+om+'pedestrian">'+WALK+'A pie</a><button type="button" class="mapb">Mapa</button></div>';
+      [].forEach.call(row.querySelectorAll('a[data-gm]'),function(a){a.addEventListener('click',openNav);});
       row.querySelector('.mapb').addEventListener('click',function(){selectPlace(p);document.getElementById('omap').scrollIntoView({behavior:'smooth',block:'start'});});
       list.appendChild(row);
     });
-    ME={la:la,lo:lo};selectPlace(arr[0]);
+    ME={la:la,lo:lo};selectPlace(arr[0].road&&arr[1]?arr[1]:arr[0]);
     document.getElementById('geoBack').className='geo-back show';
   }
   function dms(v,pos,neg){var h=v<0?neg:pos;v=Math.abs(v);var d=Math.floor(v),mf=(v-d)*60,m=Math.floor(mf),sec=((mf-m)*60).toFixed(1);if(sec==='60.0'){sec='0.0';m++;}if(m===60){m=0;d++;}return d+'° '+m+"' "+sec.replace('.',',')+'" '+h;}
