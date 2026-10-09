@@ -105,16 +105,17 @@ a{color:inherit}
 .dest .bt{grid-template-columns:1fr 1fr 1fr!important}
 .dest .bt button.mapb{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-radius:10px;border:2px solid var(--green);background:#E8F5E9;color:var(--green-d);font:800 16px/1 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;cursor:pointer}
 .dest.sel{background:#F1F8F2;border-radius:10px;padding-left:8px;padding-right:8px}
-.navsel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
-.navsel label{display:flex;flex-direction:column;gap:2px;border:2px solid #CFD8DC;border-radius:12px;padding:10px;cursor:pointer;background:#fff}
+.navsel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 10px}
+.navsel label{display:flex;flex-direction:column;gap:2px;border:2px solid #CFD8DC;border-radius:12px;padding:9px 8px;cursor:pointer;background:#fff}
 .navsel input{position:absolute;opacity:0;pointer-events:none}
-.navsel b{font:800 18px/1.05 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;color:#263238}
+.navsel b{font:800 17px/1.05 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;color:#263238}
 .navsel span{font-size:13px;font-weight:600;color:var(--muted)}
 .navsel label.on{border-color:var(--green);background:#E8F5E9}
 .navsel label.on b{color:var(--green-d)}
 .navtip{display:none;margin:8px 0 0;background:#FFF3E0;color:#7A3A00;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600}
 .navtip.show{display:block}
 .navtip a{color:#7A3A00}
+.stores{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.stores .store{margin-top:0!important}
 .prep{margin-top:12px;background:#E8F5E9;border:2px solid #A5D6A7;border-radius:12px;padding:12px 14px;font-size:14.5px;font-weight:600;color:#263238}
 .prep b{color:var(--green-d)}
 .prep ol{margin:6px 0 0;padding-left:20px}.prep li{margin:3px 0}
@@ -253,18 +254,18 @@ a{color:inherit}
               <g transform="translate(220,16)"><path d="M0 -10 L4 4 L0 1 L-4 4Z" fill="#263238"></path><text y="13" font-size="7" font-weight="700" text-anchor="middle" fill="#263238">N</text></g>
             </svg>
             <div class="omap-info" id="omapInfo"></div>
-            <p class="omap-note">Mapa esquemático disponible sin señal: rutas principales aproximadas. Usalo para orientarte; el recorrido exacto lo dan Organic Maps (sin señal, con el mapa descargado) o Google Maps (con datos).</p>
+            <p class="omap-note">Mapa esquemático disponible sin señal: rutas principales aproximadas. Usalo para orientarte; el recorrido exacto lo da MAPS.ME (sin señal, con el mapa descargado) o Google Maps (con datos).</p>
           </div>
           <div class="navsel" id="navSel">
-            <label class="on" data-v="om"><input type="radio" name="nav" value="om" checked><b>Organic Maps</b><span>Funciona sin señal</span></label>
+            <label data-v="mm"><input type="radio" name="nav" value="mm"><b>MAPS.ME</b><span>Funciona sin señal</span></label>
             <label data-v="gm"><input type="radio" name="nav" value="gm"><b>Google Maps</b><span>Necesita datos</span></label>
           </div>
-          <div class="navtip" id="navTip">Si no se abrió Organic Maps, es porque no está instalada en este celular. Instalala cuando tengas señal desde <a href="https://organicmaps.app/" target="_blank" rel="noopener">organicmaps.app</a> y descargá el mapa de Tierra del Fuego.</div>
+          <div class="navtip" id="navTip"></div>
           <div id="geoList"></div>
           <div class="prep"><b>Antes de salir, con señal:</b>
-            <ol><li>Instalá <b>Organic Maps</b> (gratis, Android y iPhone).</li><li>Abrila, acercate a Tierra del Fuego y tocá <b>Descargar</b> cuando te ofrezca el mapa de la zona.</li><li>Listo: rutas, senderos y navegación funcionan sin internet.</li></ol>
-            <a class="store" href="https://organicmaps.app/" target="_blank" rel="noopener">Descargar Organic Maps</a></div>
-          <div class="geo-warn">Google Maps necesita datos móviles salvo que tengas la zona descargada. Organic Maps navega sin señal si descargaste el mapa antes. En zonas aisladas, la opción a pie es solo para distancias cortas: ante una emergencia, llamá o comunicate por radio y esperá asistencia.</div>
+            <ol><li>Instalá <b>MAPS.ME</b> (gratis, Android y iPhone).</li><li>Abrila, buscá <b>Tierra del Fuego</b> y tocá <b>Descargar</b> el mapa de la zona.</li><li>Listo: rutas, senderos y navegación funcionan sin internet.</li></ol>
+            <div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.mapswithme.maps.pro" target="_blank" rel="noopener">Android · Google Play</a><a class="store" href="https://apps.apple.com/app/id510623322" target="_blank" rel="noopener">iPhone · App Store</a></div></div>
+          <div class="geo-warn">Google Maps necesita datos móviles salvo que tengas la zona descargada. MAPS.ME navega sin señal si descargaste el mapa antes. En zonas aisladas, la opción a pie es solo para distancias cortas: ante una emergencia, llamá o comunicate por radio y esperá asistencia.</div>
         </div>
       </div>
       <div class="geo-err" id="geoErr"></div>
@@ -435,8 +436,8 @@ a{color:inherit}
   }
   function selectPlace(p){SEL=p;drawMap();
     [].forEach.call(document.querySelectorAll('.dest'),function(d){d.classList.toggle('sel',d.getAttribute('data-n')===p.n);});}
-  var NAV='om';try{NAV=localStorage.getItem('navApp')||'om';}catch(e){}
-  function setNav(v){NAV=v;try{localStorage.setItem('navApp',v);}catch(e){}
+  var NAV='mm';try{NAV=localStorage.getItem('navApp3')||'mm';}catch(e){}if(NAV!=='gm')NAV='mm';
+  function setNav(v){NAV=v;try{localStorage.setItem('navApp3',v);}catch(e){}
     [].forEach.call(document.querySelectorAll('#navSel label'),function(l){var on=l.getAttribute('data-v')===v;l.classList.toggle('on',on);l.querySelector('input').checked=on;});
     document.getElementById('navTip').className='navtip';}
   [].forEach.call(document.querySelectorAll('#navSel label'),function(l){l.addEventListener('click',function(e){e.preventDefault();setNav(l.getAttribute('data-v'));});});
@@ -444,9 +445,9 @@ a{color:inherit}
   function openNav(e){e.preventDefault();var a=e.currentTarget;
     if(NAV==='gm'){window.open(a.getAttribute('data-gm'),'_blank','noopener');return;}
     var left=false,h=function(){if(document.hidden)left=true;};document.addEventListener('visibilitychange',h);
-    window.location.href=a.getAttribute('data-om');
-    setTimeout(function(){document.removeEventListener('visibilitychange',h);if(!left&&!document.hidden){document.getElementById('navTip').className='navtip show';}},1800);}
-  var ROADS=[[[-53.318,-68.6372],[-53.318,-68.4911]],[[-53.318,-68.4911],[-53.3221,-68.4333],[-53.3345,-68.3962],[-53.3881,-68.322],[-53.4417,-68.19],[-53.5036,-68.1157],[-53.5655,-68.0662],[-53.6686,-67.959],[-53.6809,-67.9425],[-53.7016,-67.8971]],[[-53.7016,-67.8971],[-53.7181,-67.8559],[-53.7634,-67.7817],[-53.7799,-67.7569],[-53.8006,-67.7445],[-53.8129,-67.7239]],[[-53.8253,-67.695],[-53.8336,-67.662],[-53.8501,-67.6414],[-53.9037,-67.6208],[-53.9367,-67.5961],[-53.9738,-67.5342],[-54.0027,-67.5053],[-54.0109,-67.4641],[-54.0233,-67.4435]],[[-54.0233,-67.4435],[-54.048,-67.3981],[-54.0728,-67.3775],[-54.114,-67.361],[-54.1553,-67.3362],[-54.2254,-67.2744],[-54.246,-67.2661]],[[-54.246,-67.2661],[-54.2542,-67.262],[-54.2749,-67.2744],[-54.312,-67.3362],[-54.345,-67.3775]],[[-54.345,-67.3775],[-54.3367,-67.5631],[-54.3409,-67.6744],[-54.3367,-67.8312],[-54.3326,-67.8641],[-54.3202,-67.8765],[-54.2996,-67.8683],[-54.18,-67.7363],[-54.147,-67.7115],[-54.114,-67.7074],[-54.0645,-67.7157],[-54.0027,-67.7115],[-53.9614,-67.7322],[-53.9284,-67.7363],[-53.8995,-67.7322],[-53.8253,-67.695]],[[-54.4728,-66.4907],[-54.4481,-66.5815],[-54.3903,-66.6598],[-54.3161,-66.7423],[-54.279,-66.8124],[-54.2542,-66.8867],[-54.2501,-67.0063],[-54.2996,-67.1011],[-54.2996,-67.13],[-54.2955,-67.1465],[-54.2666,-67.1877],[-54.2542,-67.2207],[-54.246,-67.2661]],[[-54.345,-67.3775],[-54.3656,-67.3692],[-54.444,-67.2661],[-54.477,-67.2496],[-54.5017,-67.2496],[-54.5347,-67.2579],[-54.5595,-67.2744],[-54.5801,-67.3032],[-54.5924,-67.3362],[-54.6131,-67.4022],[-54.6213,-67.4558],[-54.6254,-67.5754],[-54.6089,-67.7074],[-54.6131,-67.7404],[-54.6378,-67.7817],[-54.7286,-67.86],[-54.745,-67.8806],[-54.7533,-67.9013]],[[-54.7533,-67.9013],[-54.7533,-67.9796],[-54.7327,-68.1116],[-54.7368,-68.1529],[-54.745,-68.1859],[-54.7863,-68.2271],[-54.8036,-68.2743]],[[-54.7533,-67.9013],[-54.7615,-67.86],[-54.7904,-67.7899],[-54.7904,-67.7445],[-54.7987,-67.7157],[-54.8152,-67.6909],[-54.8688,-67.5713],[-54.8729,-67.4765],[-54.8853,-67.4435]],[[-54.8069,-68.3137],[-54.8234,-68.3385],[-54.8358,-68.3715],[-54.8559,-68.5297]],[[-54.8683,-68.5654],[-54.8894,-68.6148]]];
+    window.location.href=a.getAttribute('data-mm');
+    setTimeout(function(){document.removeEventListener('visibilitychange',h);if(!left&&!document.hidden){var tp=document.getElementById('navTip');tp.innerHTML='Si no se abrió MAPS.ME, es porque no está instalada en este celular. Instalala cuando tengas señal y descargá el mapa de Tierra del Fuego.'+'<div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.mapswithme.maps.pro" target="_blank" rel="noopener">Android · Google Play</a><a class="store" href="https://apps.apple.com/app/id510623322" target="_blank" rel="noopener">iPhone · App Store</a></div>';tp.className='navtip show';}},1800);}
+  var ROADS=[[[-53.318,-68.6242],[-53.318,-68.4911]],[[-53.318,-68.4911],[-53.3221,-68.4333],[-53.3345,-68.3962],[-53.3881,-68.322],[-53.4417,-68.19],[-53.5036,-68.1157],[-53.5655,-68.0662],[-53.6686,-67.959],[-53.6809,-67.9425],[-53.7016,-67.8971]],[[-53.7016,-67.8971],[-53.7181,-67.8559],[-53.7634,-67.7817],[-53.7799,-67.7569],[-53.8006,-67.7445],[-53.8129,-67.7239]],[[-53.8253,-67.695],[-53.8336,-67.662],[-53.8501,-67.6414],[-53.9037,-67.6208],[-53.9367,-67.5961],[-53.9738,-67.5342],[-54.0027,-67.5053],[-54.0109,-67.4641],[-54.0233,-67.4435]],[[-54.0233,-67.4435],[-54.048,-67.3981],[-54.0728,-67.3775],[-54.114,-67.361],[-54.1553,-67.3362],[-54.2254,-67.2744],[-54.246,-67.2661]],[[-54.246,-67.2661],[-54.2542,-67.262],[-54.2749,-67.2744],[-54.312,-67.3362],[-54.345,-67.3775]],[[-54.345,-67.3775],[-54.3367,-67.5631],[-54.3409,-67.6744],[-54.3367,-67.8312],[-54.3326,-67.8641],[-54.3202,-67.8765],[-54.2996,-67.8683],[-54.18,-67.7363],[-54.147,-67.7115],[-54.114,-67.7074],[-54.0645,-67.7157],[-54.0027,-67.7115],[-53.9614,-67.7322],[-53.9284,-67.7363],[-53.8995,-67.7322],[-53.8253,-67.695]],[[-54.4728,-66.4907],[-54.4481,-66.5815],[-54.3903,-66.6598],[-54.3161,-66.7423],[-54.279,-66.8124],[-54.2542,-66.8867],[-54.2501,-67.0063],[-54.2996,-67.1011],[-54.2996,-67.13],[-54.2955,-67.1465],[-54.2666,-67.1877],[-54.2542,-67.2207],[-54.246,-67.2661]],[[-54.345,-67.3775],[-54.3656,-67.3692],[-54.444,-67.2661],[-54.477,-67.2496],[-54.5017,-67.2496],[-54.5347,-67.2579],[-54.5595,-67.2744],[-54.5801,-67.3032],[-54.5924,-67.3362],[-54.6131,-67.4022],[-54.6213,-67.4558],[-54.6254,-67.5754],[-54.6089,-67.7074],[-54.6131,-67.7404],[-54.6378,-67.7817],[-54.7286,-67.86],[-54.745,-67.8806],[-54.7533,-67.9013]],[[-54.7533,-67.9013],[-54.7533,-67.9796],[-54.7327,-68.1116],[-54.7368,-68.1529],[-54.745,-68.1859],[-54.7863,-68.2271],[-54.7967,-68.2554]],[[-54.7533,-67.9013],[-54.7615,-67.86],[-54.7904,-67.7899],[-54.7904,-67.7445],[-54.7987,-67.7157],[-54.8152,-67.6909],[-54.8681,-67.5728]],[[-54.8121,-68.3215],[-54.8234,-68.3385],[-54.8358,-68.3715],[-54.8371,-68.3819]]];
   function nearestRoad(la,lo){var c=Math.cos(la*Math.PI/180),best=null;
     ROADS.forEach(function(L){for(var i=0;i<L.length-1;i++){var ax=L[i][1]*c,ay=L[i][0],bx=L[i+1][1]*c,by=L[i+1][0],px=lo*c,py=la;
       var dx=bx-ax,dy=by-ay,t=((px-ax)*dx+(py-ay)*dy)/((dx*dx+dy*dy)||1e-12);t=Math.max(0,Math.min(1,t));
@@ -459,11 +460,11 @@ a{color:inherit}
     arr.forEach(function(p,i){
       var o=la.toFixed(6)+','+lo.toFixed(6),dst=p.la+','+p.lo;
       var gm='https://www.google.com/maps/dir/?api=1&origin='+o+'&destination='+dst+'&travelmode=';
-      var om='om://route?v=1&sll='+o+'&saddr='+encodeURIComponent('Mi ubicación')+'&dll='+dst+'&daddr='+encodeURIComponent(p.n)+'&type=';
+      var mm='mapsme://route?sll='+o+'&saddr='+encodeURIComponent('Mi ubicación')+'&dll='+dst+'&daddr='+encodeURIComponent(p.n)+'&type=';
       var km=p.km<1?'< 1 km':(p.km<10?p.km.toFixed(1).replace('.',','):Math.round(p.km))+(p.km<1?'':' km');
       var row=document.createElement('div');row.className='dest';row.setAttribute('data-n',p.n);
       row.innerHTML='<div class="n">'+p.n+(p.road?'<span class="near" style="background:#E65100">Referencia</span>':((i===1&&arr[0].road)||(i===0&&!arr[0].road)?'<span class="near">Más cercana</span>':''))+'<small>'+p.d+'</small></div><div class="km">≈ '+km+'</div>'+
-        '<div class="bt"><a class="car" href="#" data-gm="'+gm+'driving" data-om="'+om+'vehicle">'+CAR+'Vehículo</a><a class="walk" href="#" data-gm="'+gm+'walking" data-om="'+om+'pedestrian">'+WALK+'A pie</a><button type="button" class="mapb">Mapa</button></div>';
+        '<div class="bt"><a class="car" href="#" data-gm="'+gm+'driving" data-mm="'+mm+'vehicle">'+CAR+'Vehículo</a><a class="walk" href="#" data-gm="'+gm+'walking" data-mm="'+mm+'pedestrian">'+WALK+'A pie</a><button type="button" class="mapb">Mapa</button></div>';
       [].forEach.call(row.querySelectorAll('a[data-gm]'),function(a){a.addEventListener('click',openNav);});
       row.querySelector('.mapb').addEventListener('click',function(){selectPlace(p);document.getElementById('omap').scrollIntoView({behavior:'smooth',block:'start'});});
       list.appendChild(row);
