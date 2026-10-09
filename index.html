@@ -154,6 +154,10 @@ a{color:inherit}
 .prep b{color:var(--green-d)}
 .prep ol{margin:6px 0 0;padding-left:20px}.prep li{margin:3px 0}
 .prep a.store{display:inline-block;margin-top:8px;background:var(--green);color:#fff;text-decoration:none;font:800 17px/1 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;padding:11px 14px;border-radius:10px}
+.gps{display:inline-flex;align-items:center;gap:6px;margin-top:8px;align-self:flex-start;background:#fff;color:#1B4D24;font:800 15px/1 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase;padding:7px 10px;border-radius:999px;letter-spacing:.02em}
+.gps svg{width:18px!important;height:18px!important;margin:0!important}
+.gpsnote{margin:14px 0 0;display:flex;gap:10px;align-items:center;background:#fff;border:2px solid #A5D6A7;border-radius:12px;padding:12px 14px;font-size:15px;font-weight:600;color:#263238}
+.gpsnote svg{flex:none;width:34px;height:34px}
 /* ===== CIERRE ===== */
 .end{background:linear-gradient(160deg,#2E7D32,#1B4D24);color:#fff;padding:30px 0 34px;text-align:center}
 .end .k{font:800 clamp(34px,9vw,58px)/.95 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
@@ -206,13 +210,13 @@ a{color:inherit}
 .pick h2{font-size:clamp(30px,8vw,44px);text-transform:uppercase;text-align:center;color:#263238;margin-bottom:16px}
 .seasons{display:grid;gap:16px}
 @media(min-width:700px){.seasons{grid-template-columns:1fr 1fr}}
-.season{position:relative;display:block;text-decoration:none;color:#fff;border-radius:18px;overflow:hidden;min-height:210px;box-shadow:0 8px 0 rgba(0,0,0,.18)}
+.season{position:relative;display:block;text-decoration:none;color:#fff;border-radius:18px;overflow:hidden;min-height:250px;box-shadow:0 8px 0 rgba(0,0,0,.18)}
 .season:active{transform:translateY(3px);box-shadow:0 4px 0 rgba(0,0,0,.18)}
 .season img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .season::after{content:"";position:absolute;inset:0}
 .season.ver::after{background:linear-gradient(180deg,rgba(27,77,36,.15),rgba(27,77,36,.88))}
 .season.inv::after{background:linear-gradient(180deg,rgba(38,50,56,.1),rgba(38,50,56,.88))}
-.season .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:210px;padding:18px 20px}
+.season .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:250px;padding:18px 20px}
 .season svg{width:46px;height:46px;margin-bottom:6px}
 .season b{font:800 clamp(40px,11vw,58px)/.95 "Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
 .season span.d{font-weight:600;font-size:16px;opacity:.95}
@@ -241,7 +245,7 @@ a{color:inherit}
         <span class="badge">Temporada actual</span>
         <div class="in">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg>
-          <b>Verano</b><span class="d">Ruta, trekking y prevención de incendios</span>
+          <b>Verano</b><span class="d">Ruta, trekking y prevención de incendios</span><span class="gps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.6"></circle></svg>GPS · mapa sin señal</span>
         </div>
         <span class="go">Entrar ›</span>
       </a>
@@ -250,11 +254,12 @@ a{color:inherit}
         <span class="badge">Temporada actual</span>
         <div class="in">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"></path><path d="M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5M3.6 10.4l3.3.9-.9 3.3M20.4 13.6l-3.3-.9.9-3.3M6 9.4l-.9-3.3 3.3-.9M18 14.6l.9 3.3-3.3.9"></path></svg>
-          <b>Invierno</b><span class="d">Nieve, hielo y equipamiento del vehículo</span>
+          <b>Invierno</b><span class="d">Nieve, hielo y equipamiento del vehículo</span><span class="gps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.6"></circle></svg>GPS · mapa sin señal</span>
         </div>
         <span class="go">Entrar ›</span>
       </a>
     </div>
+    <div class="gpsnote"><span style="color:#1B5E20"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.6"></circle></svg></span><div>Para ver <b>tus coordenadas</b>, el <b>mapa sin señal</b> y cómo <b>volver a la ciudad</b>: entrá a Verano o Invierno y tocá el botón verde <b>"Ver mis coordenadas"</b>.</div></div>
   </div>
 </section>
 
